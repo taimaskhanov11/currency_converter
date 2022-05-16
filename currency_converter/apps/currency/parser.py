@@ -57,6 +57,7 @@ class Parser:
         self.url_eubank = "https://eubank.kz/exchange-rates/"
         self.url_bcc = "https://www.bcc.kz/about/kursy-valyut/"
         self._cookie_file = BASE_DIR / "cookies.json"
+        self.br.delete_all_cookies()
 
     def __enter__(self):
         logger.info(f"Opening browser")
@@ -133,6 +134,7 @@ class Parser:
                     self.get(self.url_bcc)
                     EXCHANGE["BCC"] = {}
                     sleep(1)
+                    print(self.br.page_source)
                     bcc_currencies = parse_bcc_exchange_rate(self.br.page_source)
                     for cur in bcc_currencies:
                         currency_model = Currency.parse_obj(cur)
