@@ -34,7 +34,7 @@ class Bot(BaseModel):
     token: str
     admins: Optional[list[int]]
     interval: int = 10
-
+    headless: bool
 
 class Database(BaseModel):
     username: str

@@ -46,6 +46,7 @@ class Parser:
         options = Options()
         options.add_argument("--disable-blink-features=AutomationControlled")
         options.add_argument("--no-sandbox")
+        options.add_argument("--headless")
         self.br = webdriver.Chrome(
             service=service,
             options=options,
