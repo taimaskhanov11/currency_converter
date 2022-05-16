@@ -105,11 +105,14 @@ async def checking_exchange_rate_start():
         for cur in eurobank_currencies:
             currency_model = Currency.parse_obj(cur)
             EXCHANGE["EUBANK"][currency_model.title] = currency_model
-    while True:
-        logger.debug(f"Проверка EUBANK")
-        await checking_exchange_rate("EUBANK")
-        await asyncio.sleep(config.bot.interval)
-        # scheduler.add_job(checking_exchange_rate, "interval", seconds=config.bot.interval, args=["EUBANK"])
+    try:
+        while True:
+            logger.debug(f"Проверка EUBANK")
+            await checking_exchange_rate("EUBANK")
+            await asyncio.sleep(config.bot.interval)
+            # scheduler.add_job(checking_exchange_rate, "interval", seconds=config.bot.interval, args=["EUBANK"])
+    except Exception as e:
+        logger.critical(e)
 
 
 if __name__ == '__main__':

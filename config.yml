@@ -3,6 +3,7 @@ bot:
   interval: 10
   admins:
     - 269019356
+  headless: true
 db:
   username: postgres
   password: postgres

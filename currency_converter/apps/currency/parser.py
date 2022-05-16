@@ -125,26 +125,30 @@ class Parser:
                 bank[currency.title] = currency
 
     def start(self):
-        with self:
-            self.send_message(f"Парс BCC запущен")
-            logger.debug(f"BCC запущен")
-            self.get(self.url_bcc)
-            EXCHANGE["BCC"] = {}
-            sleep(1)
-            bcc_currencies = parse_bcc_exchange_rate(self.br.page_source)
-            for cur in bcc_currencies:
-                currency_model = Currency.parse_obj(cur)
-                EXCHANGE["BCC"][currency_model.title] = currency_model
-            # self.br.set_page_load_timeout(3)
-            while True:
-                logger.debug(f"Проверка BCC")
-                data = parse_bcc_exchange_rate(self.br.page_source)
-                logger.trace(f'BCC|{data}')
-                self.check_rate(data, "BCC")
-                self.br.refresh()
-                sleep(3)
-                self.br.execute_script("window.stop();")
-                sleep(config.bot.interval)
+        while True:
+            try:
+                with self:
+                    self.send_message(f"Парс BCC запущен")
+                    logger.debug(f"BCC запущен")
+                    self.get(self.url_bcc)
+                    EXCHANGE["BCC"] = {}
+                    sleep(1)
+                    bcc_currencies = parse_bcc_exchange_rate(self.br.page_source)
+                    for cur in bcc_currencies:
+                        currency_model = Currency.parse_obj(cur)
+                        EXCHANGE["BCC"][currency_model.title] = currency_model
+                    # self.br.set_page_load_timeout(3)
+                    while True:
+                        logger.debug(f"Проверка BCC")
+                        data = parse_bcc_exchange_rate(self.br.page_source)
+                        logger.trace(f'BCC|{data}')
+                        self.check_rate(data, "BCC")
+                        self.br.refresh()
+                        sleep(4)
+                        self.br.execute_script("window.stop();")
+                        sleep(config.bot.interval)
+            except Exception as e:
+                logger.critical(e)
 
 
 def main():
