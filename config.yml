@@ -1,0 +1,11 @@
+bot:
+  token: your_token
+  interval: 10
+  admins:
+    - 269019356
+db:
+  username: postgres
+  password: postgres
+  host: localhost
+  port: 5432
+  db_name: project_name

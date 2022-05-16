@@ -1,0 +1,168 @@
+[
+  {
+    "domain": ".bcc.kz",
+    "expiry": 1683821082,
+    "httpOnly": false,
+    "name": "BCC_SM_LAST_VISIT",
+    "path": "/",
+    "secure": false,
+    "value": "16.05.2022+22%3A04%3A43"
+  },
+  {
+    "domain": ".bcc.kz",
+    "expiry": 1681488281,
+    "httpOnly": false,
+    "name": "tmr_reqNum",
+    "path": "/",
+    "secure": false,
+    "value": "13"
+  },
+  {
+    "domain": "www.bcc.kz",
+    "expiry": 1968077051,
+    "httpOnly": false,
+    "name": "BX_USER_ID",
+    "path": "/",
+    "secure": false,
+    "value": "ffd14b2dbaacc2fad247615f3c058082"
+  },
+  {
+    "domain": "www.bcc.kz",
+    "expiry": 1684253051,
+    "httpOnly": false,
+    "name": "c2d_widget_id",
+    "path": "/",
+    "secure": false,
+    "value": "{%223ef4b8560a2dcd9990c2836502827b8b%22:%22[chat]%20e8a911238eb437b73281%22}"
+  },
+  {
+    "domain": ".bcc.kz",
+    "expiry": 1681488281,
+    "httpOnly": false,
+    "name": "tmr_lvid",
+    "path": "/",
+    "secure": false,
+    "value": "676d43cf5280280f73701e539a410aae"
+  },
+  {
+    "domain": ".bcc.kz",
+    "expiry": 1652718882,
+    "httpOnly": false,
+    "name": "_ym_visorc",
+    "path": "/",
+    "sameSite": "None",
+    "secure": true,
+    "value": "w"
+  },
+  {
+    "domain": ".bcc.kz",
+    "expiry": 1652789050,
+    "httpOnly": false,
+    "name": "_ym_isad",
+    "path": "/",
+    "sameSite": "None",
+    "secure": true,
+    "value": "2"
+  },
+  {
+    "domain": ".bcc.kz",
+    "expiry": 1681488281,
+    "httpOnly": false,
+    "name": "tmr_lvidTS",
+    "path": "/",
+    "secure": false,
+    "value": "1652717051003"
+  },
+  {
+    "domain": ".bcc.kz",
+    "expiry": 1683821082,
+    "httpOnly": false,
+    "name": "BCC_SM_GUEST_ID",
+    "path": "/",
+    "secure": false,
+    "value": "25275061"
+  },
+  {
+    "domain": ".bcc.kz",
+    "expiry": 1660493050,
+    "httpOnly": false,
+    "name": "_gcl_au",
+    "path": "/",
+    "secure": false,
+    "value": "1.1.73443948.1652717051"
+  },
+  {
+    "domain": ".bcc.kz",
+    "expiry": 1660493083,
+    "httpOnly": false,
+    "name": "_fbp",
+    "path": "/",
+    "sameSite": "Lax",
+    "secure": false,
+    "value": "fb.1.1652717050868.1107582235"
+  },
+  {
+    "domain": "www.bcc.kz",
+    "expiry": 1652803484,
+    "httpOnly": false,
+    "name": "tmr_detect",
+    "path": "/",
+    "secure": false,
+    "value": "0%7C1652717084355"
+  },
+  {
+    "domain": ".bcc.kz",
+    "expiry": 1684253050,
+    "httpOnly": false,
+    "name": "_ym_uid",
+    "path": "/",
+    "sameSite": "None",
+    "secure": true,
+    "value": "16527170514855550"
+  },
+  {
+    "domain": ".bcc.kz",
+    "expiry": 1652803482,
+    "httpOnly": false,
+    "name": "_gid",
+    "path": "/",
+    "secure": false,
+    "value": "GA1.2.1490513815.1652717051"
+  },
+  {
+    "domain": ".bcc.kz",
+    "expiry": 1652717110,
+    "httpOnly": false,
+    "name": "_gat",
+    "path": "/",
+    "secure": false,
+    "value": "1"
+  },
+  {
+    "domain": ".bcc.kz",
+    "expiry": 1684253050,
+    "httpOnly": false,
+    "name": "_ym_d",
+    "path": "/",
+    "sameSite": "None",
+    "secure": true,
+    "value": "1652717051"
+  },
+  {
+    "domain": ".bcc.kz",
+    "expiry": 1715789082,
+    "httpOnly": false,
+    "name": "_ga",
+    "path": "/",
+    "secure": false,
+    "value": "GA1.2.1692090357.1652717051"
+  },
+  {
+    "domain": ".bcc.kz",
+    "httpOnly": true,
+    "name": "PHPSESSID",
+    "path": "/",
+    "secure": true,
+    "value": "nyKbyVgEji4ozLTxD677akuqgZ0uOGAV"
+  }
+]
