@@ -46,7 +46,8 @@ class Parser:
         options = Options()
         options.add_argument("--disable-blink-features=AutomationControlled")
         options.add_argument("--no-sandbox")
-        options.add_argument("--headless")
+        if config.bot.headless:
+            options.add_argument("--headless")
         self.br = webdriver.Chrome(
             service=service,
             options=options,
@@ -126,15 +127,14 @@ class Parser:
                 bank[currency.title] = currency
 
     def start(self):
-        while True:
-            try:
-                with self:
+        with self:
+            while True:
+                try:
                     self.send_message(f"Парс BCC запущен")
                     logger.debug(f"BCC запущен")
                     self.get(self.url_bcc)
                     EXCHANGE["BCC"] = {}
                     sleep(1)
-                    logger.info(self.br.page_source)
                     bcc_currencies = parse_bcc_exchange_rate(self.br.page_source)
                     for cur in bcc_currencies:
                         currency_model = Currency.parse_obj(cur)
@@ -149,9 +149,10 @@ class Parser:
                         sleep(4)
                         self.br.execute_script("window.stop();")
                         sleep(config.bot.interval)
-            except Exception as e:
-                logger.critical(e)
-                sleep(10)
+                except Exception as e:
+                    logger.critical(e)
+                    sleep(10)
+
 
 def main():
     loop = asyncio.get_event_loop()

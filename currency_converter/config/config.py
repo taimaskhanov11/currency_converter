@@ -53,4 +53,4 @@ I18N_DOMAIN = "currency_converter"
 LOCALES_DIR = BASE_DIR / "currency_converter/apps/bot/locales"
 TZ = datetime.timezone(datetime.timedelta(hours=3))
 # config_file = parse_config()
-config = Config(**load_yaml("config.yml"))
+config = Config(**load_yaml("config_dev.yml"))
