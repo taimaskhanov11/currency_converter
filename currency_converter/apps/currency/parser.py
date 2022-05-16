@@ -134,7 +134,7 @@ class Parser:
                     self.get(self.url_bcc)
                     EXCHANGE["BCC"] = {}
                     sleep(1)
-                    print(self.br.page_source)
+                    logger.info(self.br.page_source)
                     bcc_currencies = parse_bcc_exchange_rate(self.br.page_source)
                     for cur in bcc_currencies:
                         currency_model = Currency.parse_obj(cur)
