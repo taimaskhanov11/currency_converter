@@ -149,7 +149,7 @@ class Parser:
                         sleep(config.bot.interval)
             except Exception as e:
                 logger.critical(e)
-
+                sleep(10)
 
 def main():
     loop = asyncio.get_event_loop()

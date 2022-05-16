@@ -113,7 +113,7 @@ async def checking_exchange_rate_start():
             # scheduler.add_job(checking_exchange_rate, "interval", seconds=config.bot.interval, args=["EUBANK"])
     except Exception as e:
         logger.critical(e)
-
+        await asyncio.sleep(10)
 
 if __name__ == '__main__':
     scheduler.start()
