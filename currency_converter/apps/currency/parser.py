@@ -128,9 +128,9 @@ class Parser:
 
     def start(self):
         with self:
+            self.send_message(f"Парс BCC запущен")
             while True:
                 try:
-                    self.send_message(f"Парс BCC запущен")
                     logger.debug(f"BCC запущен")
                     self.get(self.url_bcc)
                     EXCHANGE["BCC"] = {}
