@@ -8,7 +8,6 @@ from currency_converter.apps.currency.models import Currency
 from currency_converter.apps.currency.temp import EXCHANGE
 from currency_converter.apps.currency.utils import send_message
 from currency_converter.config.config import config
-from currency_converter.loader import scheduler
 
 headers = {
     "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36",
@@ -44,16 +43,23 @@ def parse_eurobank_exchange_rate(text) -> list[dict[str, str | float]]:
 
 def parse_bcc_exchange_rate(text) -> list[dict[str, str | float]]:
     soup = BeautifulSoup(text, "lxml")
-    # print(soup)
     bcc_table = soup.find_all("div", {"class": "s_table_over"})[2]
-    # print(bcc_table)
-    bcc_tr = bcc_table.find("tbody").find_all("tr")[2]
+    bcc_tr_base = bcc_table.find("tbody").find_all("tr")
+
+    bcc_tr_title = bcc_tr_base[0]
+    titles_names = [(4, 5), (2, 3), (0, 1)]
+    # titles = {
+    #     "USD": (0, 1),
+    #     "RUB": (2, 3),
+    #     "EURO": (4, 5),
+    # }
+    titles = {}
+    for i in bcc_tr_title.find_all("th")[1:]:
+        title = i.text.strip()
+        titles[title] = titles_names.pop()
+
+    bcc_tr = bcc_tr_base[2]
     tds = list(map(lambda x: x.text.strip(), bcc_tr.find_all("td")[1:]))
-    titles = {
-        "USD": (0, 1),
-        "RUB": (2, 3),
-        "EURO": (4, 5),
-    }
     data = []
     for title, value in titles.items():
         data.append({
@@ -115,8 +121,9 @@ async def checking_exchange_rate_start():
         logger.critical(e)
         await asyncio.sleep(10)
 
+
 if __name__ == '__main__':
-    scheduler.start()
+    # scheduler.start()
     loop = asyncio.get_event_loop()
     loop.create_task(checking_exchange_rate_start())
     loop.run_forever()
