@@ -173,7 +173,7 @@ class Parser:
                         sleep(config.bot.interval)
                 except Exception as e:
                     logger.critical(e)
-                    sleep(10)
+                    sleep(30)
                     self.init()
 
 
