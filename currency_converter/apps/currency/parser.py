@@ -126,6 +126,28 @@ class Parser:
                 self.send_message(text)
                 bank[currency.title] = currency
 
+    def init(self):
+        driver_path = ChromeDriverManager().install()
+        service = Service(
+            driver_path, log_path=str(Path(LOG_DIR, "chrome.log"))
+        )
+        options = Options()
+        options.add_argument("--disable-blink-features=AutomationControlled")
+        options.add_argument("--no-sandbox")
+        if config.bot.headless:
+            options.add_argument("--headless")
+        self.br = webdriver.Chrome(
+            service=service,
+            options=options,
+        )
+        self.br.implicitly_wait(2)
+        self.br.delete_all_cookies()
+        self.repeat = False
+        self.url_eubank = "https://eubank.kz/exchange-rates/"
+        self.url_bcc = "https://www.bcc.kz/about/kursy-valyut/"
+        self._cookie_file = BASE_DIR / "cookies.json"
+        self.br.delete_all_cookies()
+
     def start(self):
         with self:
             self.send_message(f"Парс BCC запущен")
@@ -152,6 +174,7 @@ class Parser:
                 except Exception as e:
                     logger.critical(e)
                     sleep(10)
+                    self.init()
 
 
 def main():
