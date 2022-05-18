@@ -1,6 +1,7 @@
 import asyncio
 
 import aiohttp
+import loguru
 from bs4 import BeautifulSoup, element
 from loguru import logger
 
@@ -25,6 +26,9 @@ def parse_eurobank_exchange_rate(text) -> list[dict[str, str | float]]:
     smartbank_table = soup.find_all("div", {"class": "exchanges-tabs-list__item"})[1]
     buying_table, selling_table = smartbank_table.find_all("div", {"class": "exchange__col"})
     buying_body, selling_body = buying_table.find("tbody"), selling_table.find("tbody")
+    # print(buying_table)
+    # print(selling_table)
+    # exit()
     data = []
     for buy, sell in zip(buying_body.find_all("tr")[:4],
                          selling_body.find_all("tr")[:4]):
@@ -32,7 +36,7 @@ def parse_eurobank_exchange_rate(text) -> list[dict[str, str | float]]:
         sell: element.Tag
         title = buy.find("span", {"class": "exchange-table__title"}).text.strip()
         selling = sell.find("span", {"class": "exchange-table__value"}).text.strip()
-        buying = sell.find("span", {"class": "exchange-table__value"}).text.strip()
+        buying = buy.find("span", {"class": "exchange-table__value"}).text.strip()
         data.append({
             "title": title,
             "buying": buying,
@@ -99,7 +103,7 @@ async def check_rate(data: list[dict[str, str | float]], bank_info):
 async def checking_exchange_rate(bank_info):
     async with aiohttp.ClientSession(headers=headers) as session:
         data = await get_eurobank_exchange_rate(session)
-        logger.trace(f"{bank_info}|{data}")
+        logger.debug(f"{bank_info}|{data}")
         await check_rate(data, bank_info)
 
 
