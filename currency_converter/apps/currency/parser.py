@@ -174,7 +174,7 @@ class Parser:
                 except Exception as e:
                     logger.critical(e)
                     sleep(30)
-                    self.init()
+                    # self.init()
 
 
 def main():
