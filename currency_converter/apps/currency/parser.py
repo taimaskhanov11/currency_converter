@@ -150,10 +150,11 @@ class Parser:
 
     def start(self):
         with self:
+            # self.send_message(f"Парс BCC запущен")
             self.send_message(f"Парс BCC запущен")
             while True:
                 try:
-                    logger.debug(f"BCC запущен")
+                    logger.info(f"BCC запущен")
                     self.get(self.url_bcc)
                     EXCHANGE["BCC"] = {}
                     sleep(1)
@@ -165,7 +166,7 @@ class Parser:
                     while True:
                         logger.debug(f"Проверка BCC")
                         data = parse_bcc_exchange_rate(self.br.page_source)
-                        logger.trace(f'BCC|{data}')
+                        logger.debug(f'BCC|{data}')
                         self.check_rate(data, "BCC")
                         self.br.refresh()
                         sleep(4)

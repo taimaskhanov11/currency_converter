@@ -109,7 +109,8 @@ async def checking_exchange_rate(bank_info):
 
 async def checking_exchange_rate_start():
     async with aiohttp.ClientSession(headers=headers) as session:
-        await send_message(f"Парс EUBANK запущен")
+        # await send_message(f"Парс EUBANK запущен")
+        logger.info(f"Парс EUBANK запущен")
         EXCHANGE["EUBANK"] = {}
         eurobank_currencies = await get_eurobank_exchange_rate(session)
         for cur in eurobank_currencies:
