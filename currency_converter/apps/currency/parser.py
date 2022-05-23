@@ -151,7 +151,7 @@ class Parser:
     def start(self):
         with self:
             # self.send_message(f"Парс BCC запущен")
-            self.send_message(f"Парс BCC запущен")
+            logger.info(f"Парс BCC запущен")
             while True:
                 try:
                     logger.info(f"BCC запущен")
