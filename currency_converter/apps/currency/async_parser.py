@@ -1,7 +1,6 @@
 import asyncio
 
 import aiohttp
-import loguru
 from bs4 import BeautifulSoup, element
 from loguru import logger
 
@@ -116,15 +115,15 @@ async def checking_exchange_rate_start():
         for cur in eurobank_currencies:
             currency_model = Currency.parse_obj(cur)
             EXCHANGE["EUBANK"][currency_model.title] = currency_model
-    try:
-        while True:
+    while True:
+        try:
             logger.debug(f"Проверка EUBANK")
             await checking_exchange_rate("EUBANK")
             await asyncio.sleep(config.bot.interval)
             # scheduler.add_job(checking_exchange_rate, "interval", seconds=config.bot.interval, args=["EUBANK"])
-    except Exception as e:
-        logger.critical(e)
-        await asyncio.sleep(10)
+        except Exception as e:
+            logger.critical(e)
+            await asyncio.sleep(10)
 
 
 if __name__ == '__main__':
